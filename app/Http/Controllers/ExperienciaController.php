@@ -2,83 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experiencia;
 use Illuminate\Http\Request;
 
 class ExperienciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $experiencias = Experiencia::all();
+        return response()->json($experiencias);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'empresa' => 'required|string|max:255',
+            'titulo' => 'required|string|max:255',
+            'ubicacion' => 'nullable|string|max:255',
+            'descripcion' => 'nullable|string',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date',
+        ]);
+
+        $experiencia = Experiencia::create($validatedData);
+        return response()->json($experiencia, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $experiencia = Experiencia::find($id);
+        if ($experiencia) {
+            return response()->json($experiencia);
+        } else {
+            return response()->json(['error' => 'Experiencia no encontrada'], 404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'empresa' => 'string|max:255',
+            'titulo' => 'string|max:255',
+            'ubicacion' => 'nullable|string|max:255',
+            'descripcion' => 'nullable|string',
+            'fecha_inicio' => 'date',
+            'fecha_fin' => 'nullable|date',
+        ]);
+
+        $experiencia = Experiencia::find($id);
+        if ($experiencia) {
+            $experiencia->update($validatedData);
+            return response()->json($experiencia);
+        } else {
+            return response()->json(['error' => 'Experiencia no encontrada'], 404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $experiencia = Experiencia::find($id);
+        if ($experiencia) {
+            $experiencia->delete();
+            return response()->json(['message' => 'Experiencia eliminada correctamente']);
+        } else {
+            return response()->json(['error' => 'Experiencia no encontrada'], 404);
+        }
     }
 }
