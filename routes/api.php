@@ -7,7 +7,7 @@ use App\Http\Controllers\EducacionController;
 use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,23 +39,26 @@ Route::get('/servicios/{id}', [ServicioController::class, 'show']);
 
 // Rutas protegidas (requieren autenticación)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/proyectos', [ProyectoController::class, 'store']);
-    Route::patch('/proyectos/{id}', [ProyectoController::class, 'update']);
-    Route::delete('/proyectos/{id}', [ProyectoController::class, 'destroy']);
 
-    Route::post('/experiencias', [ExperienciaController::class, 'store']);
-    Route::patch('/experiencias/{id}', [ExperienciaController::class, 'update']);
-    Route::delete('/experiencias/{id}', [ExperienciaController::class, 'destroy']);
-
-    Route::post('/educaciones', [EducacionController::class, 'store']);
-    Route::patch('/educaciones/{id}', [EducacionController::class, 'update']);
-    Route::delete('/educaciones/{id}', [EducacionController::class, 'destroy']);
-
-    Route::post('/habilidades', [HabilidadController::class, 'store']);
-    Route::patch('/habilidades/{id}', [HabilidadController::class, 'update']);
-    Route::delete('/habilidades/{id}', [HabilidadController::class, 'destroy']);
-
-    Route::post('/servicios', [ServicioController::class, 'store']);
-    Route::patch('/servicios/{id}', [ServicioController::class, 'update']);
-    Route::delete('/servicios/{id}', [ServicioController::class, 'destroy']);
 });
+Route::post('/proyectos', [ProyectoController::class, 'store']);
+Route::patch('/proyectos/{id}', [ProyectoController::class, 'update']);
+Route::delete('/proyectos/{id}', [ProyectoController::class, 'destroy']);
+
+Route::post('/experiencias', [ExperienciaController::class, 'store']);
+Route::patch('/experiencias/{id}', [ExperienciaController::class, 'update']);
+Route::delete('/experiencias/{id}', [ExperienciaController::class, 'destroy']);
+
+Route::post('/educaciones', [EducacionController::class, 'store']);
+Route::patch('/educaciones/{id}', [EducacionController::class, 'update']);
+Route::delete('/educaciones/{id}', [EducacionController::class, 'destroy']);
+
+Route::post('/habilidades', [HabilidadController::class, 'store']);
+Route::patch('/habilidades/{id}', [HabilidadController::class, 'update']);
+Route::delete('/habilidades/{id}', [HabilidadController::class, 'destroy']);
+
+Route::post('/servicios', [ServicioController::class, 'store']);
+Route::patch('/servicios/{id}', [ServicioController::class, 'update']);
+Route::delete('/servicios/{id}', [ServicioController::class, 'destroy']);
+
+Route::post('/contact', [ContactController::class, 'send']);
