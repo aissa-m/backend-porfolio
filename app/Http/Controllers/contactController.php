@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\ConfirmationMail;
 use Mail; // Importa la fachada Mail de Laravel
 
+// Se ha modificado el nombre de este arachivo.
 class ContactController extends Controller
 {
     public function send(Request $request)
