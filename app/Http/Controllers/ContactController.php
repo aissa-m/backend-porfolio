@@ -13,8 +13,11 @@ class ContactController extends Controller
     public function send(Request $request)
     {
         $details = [
+            'name' => $request->name,
             'email' => $request->email,
-            'message' => $request->message
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'telef' => $request->telef
         ];
 
         // Enviar correo al propietario del sitio
@@ -25,5 +28,4 @@ class ContactController extends Controller
 
         return response()->json(['message' => 'Correo enviado correctamente']);
     }
-
 }
