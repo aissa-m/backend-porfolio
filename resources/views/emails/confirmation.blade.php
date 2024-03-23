@@ -18,10 +18,10 @@
         <h1>¡Gracias por ponerte en contacto!</h1>
         <p>Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.</p>
         <p>Información enviada:</p>
-        <ul>
-            <li>Email: {{ $details['email'] }}</li>
-            <li>Mensaje: {{ $details['message'] }}</li>
-        </ul>
+        <div>
+            <p>Email: {{ $details['email'] }}</p>
+            <p>Mensaje: {{ $details['message'] }}</p>
+        </div>
     </div>
 </body>
 </html>

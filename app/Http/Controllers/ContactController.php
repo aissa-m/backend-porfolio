@@ -15,9 +15,7 @@ class ContactController extends Controller
         $details = [
             'name' => $request->name,
             'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message,
-            'telef' => $request->telef
+            'message' => $request->message
         ];
 
         // Enviar correo al propietario del sitio
